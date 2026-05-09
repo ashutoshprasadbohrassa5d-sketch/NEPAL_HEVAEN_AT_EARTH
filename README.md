@@ -1,1 +1,1 @@
-# NEPAL_HEVAEN_AT_EARTH
+Nepal is a landlocked South Asian country nestled in the Himalayas, bordering China to the north and India to the south, east, and west. Famous as the birthplace of Lord Buddha and home to Mount Everest, it features immense geographical diversity, ranging from tropical plains to the highest peaks on Earth. THIS WEBSITE PROVIDES YOU SHORT INFORMATIONS ABOUT NEPAL FOR BEGINNERS OR TRAVELLERS ALSO.
