@@ -1,0 +1,339 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nepal | A Complete Journey</title>
+<style>
+:root{--red:#b91c1c;--gold:#f6c453;--teal:#0f766e;--ink:#162033;--paper:#fffaf0;--muted:#667085;--shadow:0 24px 70px rgba(23,32,51,.18)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}
+body{margin:0;font-family:Inter,Segoe UI,Arial,sans-serif;background:var(--paper);color:var(--ink);overflow-x:hidden}
+.progress{position:fixed;top:0;left:0;height:4px;width:0;background:linear-gradient(90deg,var(--red),var(--gold),var(--teal));z-index:100}
+nav{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:90;width:min(1360px,calc(100% - 28px));display:flex;justify-content:space-between;align-items:center;gap:12px;padding:12px 14px;background:rgba(255,250,240,.92);backdrop-filter:blur(18px);border:1px solid rgba(255,255,255,.75);box-shadow:0 12px 40px rgba(0,0,0,.09);border-radius:8px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:950;color:var(--red);letter-spacing:.04em}.brand span:first-child{width:34px;height:34px;border-radius:8px;background:var(--red);color:white;display:grid;place-items:center}
+.links{display:flex;gap:6px;align-items:center;flex-wrap:wrap;justify-content:flex-end}.links a,.links button{text-decoration:none;border:0;border-radius:8px;padding:10px;font-weight:800;font-size:.76rem;background:transparent;color:var(--ink);cursor:pointer}.links a:hover,.links a.active{background:var(--red);color:white}.music-btn{background:var(--teal)!important;color:white!important}.translate-btn{background:var(--gold)!important;color:#281706!important}
+.page{display:none;animation:pageIn .55s ease both}.page.active{display:block}@keyframes pageIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero,.panel-hero{color:white;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.76)),var(--hero-img) center/cover fixed}
+.hero{min-height:100vh;position:relative;display:grid;align-items:end;padding:130px 7vw 82px;overflow:hidden}.hero:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 22% 18%,rgba(246,196,83,.30),transparent 31%),radial-gradient(circle at 82% 58%,rgba(15,118,110,.38),transparent 32%);animation:glow 8s ease-in-out infinite alternate}@keyframes glow{to{transform:translateY(22px) scale(1.04)}}
+.hero-content{position:relative;z-index:2;max-width:930px}.eyebrow{color:var(--gold);font-weight:950;text-transform:uppercase;letter-spacing:.18em;margin-bottom:14px}
+h1{font-size:clamp(3.3rem,8vw,8rem);line-height:.9;margin:0 0 18px}h2{font-size:clamp(2.1rem,4.4vw,4.8rem);line-height:1;margin:0}.hero p{max-width:770px;color:#fff3dc;font-size:clamp(1rem,2vw,1.32rem);line-height:1.7}
+.btn{display:inline-flex;margin:8px 8px 0 0;padding:13px 17px;border-radius:8px;background:var(--red);color:white;text-decoration:none;font-weight:900;box-shadow:0 12px 28px rgba(185,28,28,.28)}.btn.secondary{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.42);box-shadow:none}
+.marquee{position:absolute;left:0;right:0;bottom:0;overflow:hidden;background:rgba(23,32,51,.76);white-space:nowrap}.marquee span{display:inline-block;padding:16px 0;color:white;font-weight:950;animation:slide 46s linear infinite}@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.panel-hero{min-height:54vh;display:grid;align-items:end;padding:120px 7vw 62px}.panel-hero h1{font-size:clamp(3rem,6vw,6.4rem)}
+section{padding:88px 7vw;position:relative;isolation:isolate}section:before{content:"";position:absolute;inset:0;z-index:-2;background:var(--bg) center/cover fixed;opacity:.24}section:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(255,250,240,.92),rgba(255,250,240,.86))}
+.section-head{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:34px}.lead{max-width:760px;color:var(--muted);line-height:1.75;font-size:1.05rem}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.stat{background:white;padding:24px;border-radius:8px;box-shadow:var(--shadow);border-top:5px solid var(--gold)}.num{font-size:2.15rem;font-weight:950;color:var(--red)}.stat p{color:var(--muted);line-height:1.6}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}.card{min-height:420px;position:relative;overflow:hidden;color:white;border-radius:8px;box-shadow:var(--shadow);transform:translateY(38px);opacity:0;transition:.75s ease;background:linear-gradient(135deg,var(--red),var(--teal))}
+.card.show,.media-card.show,.step.show,.hero-card.show{opacity:1;transform:translateY(0)}.card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.7s}.card:hover img{transform:scale(1.08)}.card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 18%,rgba(0,0,0,.82))}.card-body{position:absolute;inset:auto 0 0;z-index:2;padding:24px}.tag{display:inline-block;background:var(--gold);color:#281706;font-weight:950;padding:7px 10px;border-radius:6px;font-size:.78rem}.card h3{font-size:1.55rem;margin:13px 0 8px}.card p{line-height:1.62;color:#fff1d6;margin:0}
+.media-card,.hero-card{display:grid;grid-template-columns:.95fr 1.05fr;gap:22px;align-items:center;background:white;border-radius:8px;padding:18px;box-shadow:0 18px 50px rgba(23,32,51,.10);border:1px solid rgba(23,32,51,.08);transform:translateY(34px);opacity:0;transition:.75s ease;margin-top:22px}.media-card.reverse{grid-template-columns:1.05fr .95fr}.media-card img,.hero-card img{width:100%;height:330px;object-fit:cover;border-radius:8px;background:#ddd}.media-card h3,.hero-card h3{margin:0 0 10px;color:var(--red);font-size:1.45rem}.media-card p,.hero-card p{color:var(--muted);line-height:1.75;margin:0}
+.heritage-list{counter-reset:item;display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:24px}.heritage-item{position:relative;background:white;padding:18px 18px 18px 64px;border-radius:8px;box-shadow:0 16px 45px rgba(23,32,51,.10)}.heritage-item:before{counter-increment:item;content:counter(item);position:absolute;left:16px;top:18px;width:34px;height:34px;border-radius:8px;display:grid;place-items:center;background:var(--red);color:white;font-weight:950}.heritage-item span{color:var(--muted);line-height:1.55;display:block;margin-top:5px}
+.timeline{max-width:980px;margin:auto;display:grid;gap:18px}.step{display:grid;grid-template-columns:92px 1fr;gap:20px;align-items:center;background:white;padding:18px;border-radius:8px;box-shadow:0 16px 45px rgba(23,32,51,.10);transform:translateX(-40px);opacity:0;transition:.7s ease}.step:nth-child(even){transform:translateX(40px)}.day{width:70px;height:70px;display:grid;place-items:center;border-radius:8px;background:var(--ink);color:white;font-weight:950}.step p{color:var(--muted);line-height:1.6}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.tile{min-height:170px;border:1px solid rgba(255,255,255,.25);padding:24px;border-radius:8px;color:white;background:rgba(22,32,51,.62);backdrop-filter:blur(10px);line-height:1.62}.tile strong{display:block;color:var(--gold);font-size:1.22rem;margin-bottom:8px}
+.culture-strip{display:flex;gap:14px;overflow:hidden;margin-top:24px;mask-image:linear-gradient(90deg,transparent,black 8%,black 92%,transparent)}.culture-strip div{flex:0 0 auto;min-width:220px;padding:18px;border-radius:8px;background:white;box-shadow:0 14px 38px rgba(23,32,51,.10);font-weight:900;color:var(--red);animation:floatCards 18s linear infinite}@keyframes floatCards{from{transform:translateX(0)}to{transform:translateX(-520px)}}
+.float{position:fixed;right:18px;bottom:18px;z-index:85;background:var(--red);color:white;border:0;border-radius:8px;padding:13px 15px;font-weight:900;cursor:pointer}footer{padding:38px 7vw;background:#162033;color:#dce7ef;line-height:1.6}
+@media(max-width:980px){.links a{display:none}.grid,.stats,.tiles,.heritage-list,.media-card,.media-card.reverse,.hero-card{grid-template-columns:1fr}.section-head{display:block}.hero{background-attachment:scroll;padding-left:22px;padding-right:22px}.panel-hero,section{padding-left:22px;padding-right:22px}.media-card img,.hero-card img{height:260px}.step{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+<audio id="bgMusic" loop preload="auto"><source src="resham-firiri.mp3" type="audio/mpeg"></audio>
+<div class="progress" id="progress"></div>
+
+<nav>
+  <div class="brand"><span>N</span><span data-ne="नेपाल">NEPAL</span></div>
+  <div class="links">
+    <a href="#home" data-page="home" class="active" data-ne="गृहपृष्ठ">Home</a>
+    <a href="#places" data-page="places" data-ne="स्थानहरू">Places</a>
+    <a href="#unesco" data-page="unesco" data-ne="युनेस्को">UNESCO</a>
+    <a href="#geography" data-page="geography" data-ne="भूगोल">Geography</a>
+    <a href="#biodiversity" data-page="biodiversity" data-ne="जैविक विविधता">Biodiversity</a>
+    <a href="#population" data-page="population" data-ne="जनसंख्या">Population</a>
+    <a href="#economy" data-page="economy" data-ne="अर्थतन्त्र">Economy</a>
+    <a href="#culture" data-page="culture" data-ne="धर्म र संस्कृति">Religion & Cultures</a>
+    <a href="#heroes" data-page="heroes" data-ne="सहिद र वीरहरू">Martyrs & Heroes</a>
+    <a href="#updates" data-page="updates" data-ne="पछिल्ला अपडेट">Latest Updates</a>
+    <button class="music-btn" id="musicBtn" data-ne="रेशम फिरिरी बजाउनुहोस्">Play Resham Firiri</button>
+    <button class="translate-btn" id="translateBtn">नेपाली</button>
+  </div>
+</nav>
+
+<main>
+<article class="page active" id="home"></article>
+<article class="page" id="places"></article>
+<article class="page" id="unesco"></article>
+<article class="page" id="geography"></article>
+<article class="page" id="biodiversity"></article>
+<article class="page" id="population"></article>
+<article class="page" id="economy"></article>
+<article class="page" id="culture"></article>
+<article class="page" id="heroes"></article>
+<article class="page" id="updates"></article>
+</main>
+
+<button class="float" onclick="window.scrollTo({top:0,behavior:'smooth'})" data-ne="माथि">Top</button>
+<footer>
+  <b data-ne="नेपाल | पूर्ण यात्रा">Nepal | A Complete Journey</b><br>
+  <span data-ne="उप-पृष्ठहरू, तथ्यहरू, चित्रसहित जानकारी, कुमारी खण्ड, सहिद र वीरहरू, पछिल्ला अपडेट, नेपाली अनुवाद र संगीत भएको गतिशील वेबसाइट।">Dynamic single-file website with sub pages, facts, image-supported information, Kumari section, martyrs and heroes, latest updates, translation, and music support.</span>
+</footer>
+
+<script>
+const file=name=>"https://commons.wikimedia.org/wiki/Special:FilePath/"+encodeURIComponent(name)+"?width=1400";
+const img={
+  everest:file("Mount Everest as seen from Drukair2 PLW edit.jpg"),
+  pokhara:file("Phewa Lake, Pokhara, Nepal.jpg"),
+  kathmandu:file("Kathmandu Durbar Square 2020.jpg"),
+  patan:file("Patan Durbar Square 2020.jpg"),
+  lumbini:file("Maya Devi Temple, Lumbini, Nepal.jpg"),
+  chitwan:file("Greater one horned rhino, Chitwan National Park.jpg"),
+  annapurna:file("Annapurna base camp.JPG"),
+  tea:file("Ilam tea garden.jpg"),
+  kumari:file("Kumari Ghar, Kathmandu Durbar Square.jpg"),
+  flag:file("Flag of Nepal.svg")
+};
+
+const districtsEn="Taplejung • Panchthar • Ilam • Jhapa • Morang • Sunsari • Dhankuta • Terhathum • Sankhuwasabha • Bhojpur • Solukhumbu • Okhaldhunga • Khotang • Udayapur • Saptari • Siraha • Dolakha • Ramechhap • Sindhuli • Dhanusha • Mahottari • Sarlahi • Rasuwa • Dhading • Nuwakot • Kathmandu • Bhaktapur • Lalitpur • Kavrepalanchok • Sindhupalchok • Makwanpur • Rautahat • Bara • Parsa • Chitwan • Gorkha • Manang • Mustang • Myagdi • Kaski • Lamjung • Tanahun • Nawalpur • Syangja • Parbat • Baglung • Gulmi • Palpa • Nawalparasi West • Rupandehi • Kapilvastu • Arghakhanchi • Pyuthan • Rolpa • Eastern Rukum • Western Rukum • Salyan • Dang • Banke • Bardiya • Surkhet • Dailekh • Jajarkot • Dolpa • Jumla • Kalikot • Mugu • Humla • Bajura • Bajhang • Achham • Doti • Kailali • Kanchanpur • Dadeldhura • Baitadi • Darchula •";
+const districtsNe="ताप्लेजुङ • पाँचथर • इलाम • झापा • मोरङ • सुनसरी • धनकुटा • तेह्रथुम • संखुवासभा • भोजपुर • सोलुखुम्बु • ओखलढुंगा • खोटाङ • उदयपुर • सप्तरी • सिरहा • दोलखा • रामेछाप • सिन्धुली • धनुषा • महोत्तरी • सर्लाही • रसुवा • धादिङ • नुवाकोट • काठमाडौं • भक्तपुर • ललितपुर • काभ्रेपलाञ्चोक • सिन्धुपाल्चोक • मकवानपुर • रौतहट • बारा • पर्सा • चितवन • गोरखा • मनाङ • मुस्ताङ • म्याग्दी • कास्की • लमजुङ • तनहुँ • नवलपुर • स्याङ्जा • पर्वत • बागलुङ • गुल्मी • पाल्पा • नवलपरासी पश्चिम • रूपन्देही • कपिलवस्तु • अर्घाखाँची • प्युठान • रोल्पा • रुकुम पूर्व • रुकुम पश्चिम • सल्यान • दाङ • बाँके • बर्दिया • सुर्खेत • दैलेख • जाजरकोट • डोल्पा • जुम्ला • कालिकोट • मुगु • हुम्ला • बाजुरा • बझाङ • अछाम • डोटी • कैलाली • कञ्चनपुर • डडेलधुरा • बैतडी • दार्चुला •";
+
+function header(title,en,ne,bg,eyebrow="Travel Guide",eyebrowNe="यात्रा मार्गदर्शिका"){
+  return `<header class="panel-hero" style="--hero-img:url('${bg}')"><div><div class="eyebrow" data-ne="${eyebrowNe}">${eyebrow}</div><h1 data-ne="${ne}">${title}</h1><p class="lead" style="color:#fff3dc">${en}</p></div></header>`;
+}
+
+document.querySelector("#home").style.setProperty("--bg",`url('${img.annapurna}')`);
+document.querySelector("#home").innerHTML=`
+<header class="hero" style="--hero-img:url('${img.everest}')">
+  <div class="hero-content">
+    <div class="eyebrow" data-ne="हिमालय • सम्पदा • प्रकृति • संस्कृति">Himalayas • Heritage • Nature • Culture</div>
+    <h1 data-ne="नेपाल भ्रमण">Visit Nepal</h1>
+    <p data-ne="प्राचीन शहर, पवित्र स्थल, जैविक विविधता, जीवित संस्कृति, हिमाली मार्ग, शान्त ताल र संसारकै अग्ला हिमालहरू भएको सुन्दर यात्रामा स्वागत छ।">A refined journey through ancient cities, sacred landscapes, rich biodiversity, living cultures, mountain routes, calm lakes, and the highest peaks on Earth.</p>
+    <a class="btn" href="#places" data-page="places" data-ne="उत्कृष्ट स्थानहरू हेर्नुहोस्">Explore Best Places</a>
+    <a class="btn secondary" href="#updates" data-page="updates" data-ne="पछिल्ला अपडेट हेर्नुहोस्">View Latest Updates</a>
+  </div>
+  <div class="marquee"><span data-ne="${districtsNe+districtsNe}">${districtsEn+districtsEn}</span></div>
+</header>
+<section><div class="section-head"><h2 data-ne="जीवित अद्भुतताको देश">A Country of Living Wonder</h2><p class="lead" data-ne="नेपाल सानो तर अत्यन्त विविध देश हो। यहाँ तराईका समथर मैदानदेखि पहाड, उपत्यका, हिमाली बस्ती, मन्दिर, स्तूप, राष्ट्रिय निकुञ्ज र हिमनदीसम्म देख्न सकिन्छ।">Nepal is compact, dramatic, and deeply layered. Travelers move from subtropical plains to middle hills, high Himalayan valleys, royal squares, Buddhist stupas, Hindu temples, jungle parks, and glacial landscapes.</p></div>
+<div class="stats">
+<div class="stat"><div class="num" data-count="10">0</div><b data-ne="युनेस्को सम्पदा विशेषता">UNESCO Heritage Highlights</b><p data-ne="काठमाडौंका सात स्मारक क्षेत्रसहित लुम्बिनी, चितवन र सगरमाथा।">Seven Kathmandu monument zones plus Lumbini, Chitwan, and Sagarmatha.</p></div>
+<div class="stat"><div class="num" data-count="8849">0</div><b data-ne="एभरेस्टको उचाइ मिटरमा">Meters of Everest</b><p data-ne="सगरमाथा संसारकै अग्लो हिमाल हो।">Mount Everest, Sagarmatha, is the world’s highest mountain.</p></div>
+<div class="stat"><div class="num" data-count="29651054">0</div><b data-ne="२०२४ जनसंख्या">Population, 2024</b><p data-ne="नेपालको अनुमानित जनसंख्या।">Estimated population of Nepal.</p></div>
+<div class="stat"><div class="num" data-count="873">0</div><b data-ne="प्रजाति">Species</b><p data-ne="जैविक विविधतामा ८७३ प्रजाति उल्लेख गरिन्छ।">873 species are highlighted in the biodiversity count.</p></div>
+</div></section>
+<section><div class="section-head"><h2 data-ne="विशेष अनुभवहरू">Signature Experiences</h2><p class="lead" data-ne="नेपालको सौन्दर्य दृश्यमा मात्र होइन, चाडपर्व, घण्टीको आवाज, हिमाली बाटो, वनको शान्ति, खाना, भाषा र आतिथ्यमा पनि छ।">Nepal’s beauty is not only scenery. It is the rhythm of festivals, courtyard bells, mountain paths, forest silence, craft, language, food, and pilgrimage.</p></div>
+<div class="tiles">
+<div class="tile"><strong data-ne="पदयात्रा">Trekking</strong><span data-ne="गाउँका बाटादेखि प्रसिद्ध हिमाली पाससम्म पदयात्रा गर्नुहोस्।">Walk Himalayan routes from gentle village trails to legendary high passes.</span></div>
+<div class="tile"><strong data-ne="पवित्र स्थलहरू">Spiritual Sites</strong><span data-ne="मन्दिर, स्तूप र जीवित परम्पराहरूको सम्मानपूर्वक भ्रमण गर्नुहोस्।">Visit temples, stupas, and living traditions with respect.</span></div>
+<div class="tile"><strong data-ne="हिमाल अवलोकन">Mountain Viewing</strong><span data-ne="अन्नपूर्ण, एभरेस्ट, लाङटाङ र धौलागिरीको सूर्योदय हेर्नुहोस्।">See sunrise over Annapurna, Everest, Langtang, or Dhaulagiri.</span></div>
+<div class="tile"><strong data-ne="वन्यजन्तु">Wildlife</strong><span data-ne="गैंडा, बाघ, चराचुरुङ्गी र नदी किनारका जंगलहरू अन्वेषण गर्नुहोस्।">Explore parks with rhinos, tigers, birds, deer, and river habitats.</span></div>
+</div></section>`;
+
+document.querySelector("#places").style.setProperty("--bg",`url('${img.pokhara}')`);
+document.querySelector("#places").innerHTML=header("Best Places to Visit","A balanced selection for culture, nature, pilgrimage, trekking, scenery, and formal travel planning.","भ्रमण गर्न उत्कृष्ट स्थानहरू",img.pokhara)+`
+<section><div class="grid">
+${[
+["Culture","संस्कृति","Kathmandu Valley","काठमाडौं उपत्यका","Royal squares, temples, Buddhist stupas, Hindu shrines, courtyards, and Newar craftsmanship.","दरबार, मन्दिर, स्तूप, आँगन र नेवारी कलाले भरिएको ऐतिहासिक उपत्यका।",img.patan],
+["Lake City","ताल शहर","Pokhara","पोखरा","A graceful lakeside base for Phewa Lake, mountain views, boating, paragliding, and Annapurna journeys.","फेवा ताल, हिमाली दृश्य, डुंगा, प्याराग्लाइडिङ र अन्नपूर्ण यात्राको आधार।",img.pokhara],
+["Himalaya","हिमालय","Everest Region","एभरेस्ट क्षेत्र","High trails, Sherpa culture, monasteries, glaciers, and the world’s most famous mountain landscape.","शेर्पा संस्कृति, गुम्बा, हिमनदी र संसारकै प्रसिद्ध हिमाली दृश्य।",img.everest],
+["Pilgrimage","तीर्थयात्रा","Lumbini","लुम्बिनी","The birthplace of Lord Buddha, centered on sacred gardens, archaeology, monasteries, and peace.","भगवान बुद्धको जन्मस्थल, पवित्र उद्यान, मठ र शान्त वातावरण।",img.lumbini],
+["Wildlife","वन्यजन्तु","Chitwan","चितवन","Terai forests, river landscapes, birdlife, canoe rides, cultural encounters, and rhinoceros habitat.","तराईका जंगल, नदी, चराचुरुङ्गी, डुंगा यात्रा र गैंडाको बासस्थान।",img.chitwan],
+["Trekking","पदयात्रा","Annapurna","अन्नपूर्ण","Classic Himalayan routes with villages, forests, sunrise viewpoints, and sweeping mountain scenery.","गाउँ, जंगल, सूर्योदय स्थल र विशाल हिमाली दृश्यका लागि प्रसिद्ध मार्ग।",img.annapurna]
+].map(c=>`<article class="card"><img src="${c[6]}" alt="${c[2]} Nepal"><div class="card-body"><span class="tag" data-ne="${c[1]}">${c[0]}</span><h3 data-ne="${c[3]}">${c[2]}</h3><p data-ne="${c[5]}">${c[4]}</p></div></article>`).join("")}
+</div></section>
+<section><div class="section-head"><h2 data-ne="सुन्दर ७ दिने यात्रा योजना">Elegant 7-Day Route</h2><p class="lead" data-ne="नेपालको विविधता देखाउने सुन्दर र व्यावहारिक पहिलो यात्रा।">A polished first trip that keeps travel realistic while showing Nepal’s variety.</p></div>
+<div class="timeline">
+${[
+["01","Arrive in Kathmandu","काठमाडौं आगमन","Settle in and walk through old city lanes.","बसोबास मिलाएर पुराना गल्लीहरूमा छोटो पैदल यात्रा।"],
+["02","Heritage Valley","सम्पदा उपत्यका","Visit Patan, Boudhanath, Swayambhunath, Pashupatinath, and traditional courtyards.","पाटन, बौद्धनाथ, स्वयम्भू, पशुपतिनाथ र परम्परागत आँगनहरू।"],
+["03","Fly to Pokhara","पोखरा यात्रा","Relax beside Phewa Lake and watch the Annapurna range at sunset.","फेवा ताल किनारमा आराम र अन्नपूर्णको सूर्यास्त दृश्य।"],
+["04","Sarangkot Sunrise","सराङकोट सूर्योदय","Enjoy mountain views, caves, temples, and lakeside cafes.","हिमाल, गुफा, मन्दिर र लेकसाइड क्याफेहरूको अनुभव।"],
+["05","Chitwan National Park","चितवन राष्ट्रिय निकुञ्ज","Transfer to the Terai for forests, rivers, and cultural performance.","तराईका जंगल, नदी र सांस्कृतिक कार्यक्रममा सहभागिता।"]
+].map(s=>`<div class="step"><div class="day">${s[0]}</div><div><h3 data-ne="${s[2]}">${s[1]}</h3><p data-ne="${s[4]}">${s[3]}</p></div></div>`).join("")}
+</div></section>`;
+
+document.querySelector("#unesco").style.setProperty("--bg",`url('${img.kathmandu}')`);
+document.querySelector("#unesco").innerHTML=header("10 UNESCO Heritage Highlights","Nepal’s famous heritage highlights, including the seven monument zones of Kathmandu Valley.","१० युनेस्को सम्पदा विशेषता",img.kathmandu,"Heritage","सम्पदा")+`
+<section><div class="media-card"><img src="${img.kathmandu}" alt="Kathmandu Durbar Square"><div><h3 data-ne="काठमाडौं उपत्यकाको सम्पदा">Kathmandu Valley Heritage</h3><p data-ne="काठमाडौं उपत्यकाका दरबार, मन्दिर, स्तूप र प्राचीन बस्तीहरू नेपालका सांस्कृतिक सम्पदाका मुख्य केन्द्र हुन्।">Kathmandu Valley’s palaces, temples, stupas, and old settlements are central to Nepal’s cultural heritage.</p></div></div>
+<div class="heritage-list">${["Kathmandu Durbar Square","Patan Durbar Square","Bhaktapur Durbar Square","Swayambhunath","Boudhanath","Pashupatinath","Changu Narayan","Lumbini","Chitwan National Park","Sagarmatha National Park"].map(x=>`<div class="heritage-item"><b>${x}</b><span>Nepal heritage highlight.</span></div>`).join("")}</div></section>`;
+
+document.querySelector("#geography").style.setProperty("--bg",`url('${img.annapurna}')`);
+document.querySelector("#geography").innerHTML=header("Geography","Nepal is a Himalayan country between India and China, with dramatic altitude changes from the Terai plains to Everest.","भूगोल",img.annapurna,"Land & Landscape","भूमि र दृश्य")+`
+<section><div class="media-card"><img src="${img.annapurna}" alt="Annapurna Nepal"><div><h3 data-ne="तीन भौगोलिक क्षेत्र">Three Geographic Belts</h3><p data-ne="नेपाललाई प्रायः तराई, पहाड र हिमाल गरी तीन प्रमुख क्षेत्रमा बुझिन्छ।">Nepal is often described through the Terai plains, hill region, and high Himalaya.</p></div></div>
+<div class="media-card reverse"><div><h3 data-ne="हिमाल, नदी र उपत्यका">Mountains, Rivers, and Valleys</h3><p data-ne="कोशी, गण्डकी र कर्णाली नदी प्रणालीले गहिरा उपत्यका बनाएका छन्।">Major river systems such as Koshi, Gandaki, and Karnali flow through deep valleys.</p></div><img src="${img.pokhara}" alt="Phewa Lake Pokhara"></div></section>`;
+
+document.querySelector("#biodiversity").style.setProperty("--bg",`url('${img.chitwan}')`);
+document.querySelector("#biodiversity").innerHTML=header("Biodiversity","Nepal’s altitude range creates ecosystems from Terai grasslands to alpine meadows and glaciers.","जैविक विविधता",img.chitwan,"Nature & Conservation","प्रकृति र संरक्षण")+`
+<section><div class="stats">
+<div class="stat"><div class="num" data-count="873">0</div><b data-ne="प्रजाति">Species</b><p data-ne="जैविक विविधतामा ८७३ प्रजाति उल्लेख गरिन्छ।">873 species are highlighted in Nepal’s biodiversity count.</p></div>
+<div class="stat"><div class="num" data-count="23">0</div><b data-ne="संरक्षित भूमि">Protected Land</b><p data-ne="राष्ट्रिय निकुञ्ज र संरक्षण क्षेत्रहरूले प्रकृति जोगाउँछन्।">National parks and conservation areas protect nature.</p></div>
+<div class="stat"><div class="num" data-count="42">0</div><b data-ne="वन क्षेत्र">Forest Area</b><p data-ne="नेपालमा उल्लेखनीय वन क्षेत्र छ।">Nepal has significant forest coverage.</p></div>
+<div class="stat"><div class="num" data-count="185">0</div><b data-ne="स्तनधारी">Mammals</b><p data-ne="नेपालमा धेरै स्तनधारी प्रजाति पाइन्छन्।">Nepal has many mammal species.</p></div>
+</div><div class="media-card"><img src="${img.chitwan}" alt="One horned rhino in Chitwan"><div><h3 data-ne="तराईका वन्यजन्तु">Terai Wildlife</h3><p data-ne="चितवन र बर्दियामा गैंडा, बाघ, हात्ती, हरिण, गोही र धेरै चराहरू पाइन्छन्।">Chitwan and Bardiya support rhinoceros, tiger, elephants, deer, crocodiles, and birds.</p></div></div></section>`;
+
+document.querySelector("#population").style.setProperty("--bg",`url('${img.patan}')`);
+document.querySelector("#population").innerHTML=header("Population","Nepal is culturally diverse, with many caste, ethnic, language, and regional communities.","जनसंख्या",img.patan,"People & Society","मानिस र समाज")+`
+<section><div class="stats">
+<div class="stat"><div class="num" data-count="29164578">0</div><b data-ne="२०२१ जनगणना">2021 Census Population</b><p data-ne="राष्ट्रिय जनगणनाको कुल जनसंख्या।">National census total population.</p></div>
+<div class="stat"><div class="num" data-count="29651054">0</div><b data-ne="२०२४ जनसंख्या">2024 Population</b><p data-ne="अनुमानित जनसंख्या।">Estimated population.</p></div>
+<div class="stat"><div class="num" data-count="198">0</div><b data-ne="घनत्व">Density</b><p data-ne="प्रति वर्ग किलोमिटर जनसंख्या।">Population per square kilometer.</p></div>
+<div class="stat"><div class="num" data-count="146">0</div><b data-ne="जातीय समूह">Caste/Ethnic Groups</b><p data-ne="नेपालमा धेरै जातीय समुदाय छन्।">Nepal has many ethnic communities.</p></div>
+</div><div class="media-card"><img src="${img.patan}" alt="Patan Durbar Square"><div><h3 data-ne="भाषा र समुदाय">Language and Community</h3><p data-ne="नेपाली आधिकारिक भाषा हो, तर मैथिली, भोजपुरी, थारु, तामाङ, नेवार, मगर, शेर्पा लगायत धेरै भाषा बोलिन्छन्।">Nepali is official, while Maithili, Bhojpuri, Tharu, Tamang, Newar, Magar, Sherpa, and many other languages are spoken.</p></div></div></section>`;
+
+document.querySelector("#economy").style.setProperty("--bg",`url('${img.tea}')`);
+document.querySelector("#economy").innerHTML=header("Economy","Nepal’s economy combines agriculture, services, tourism, remittances, hydropower, trade, and small industries.","अर्थतन्त्र",img.tea,"Work & Development","काम र विकास")+`
+<section><div class="stats">
+<div class="stat"><div class="num" data-count="43">0</div><b data-ne="जीडीपी">GDP</b><p data-ne="नेपालको अर्थतन्त्र बढ्दै गएको छ।">Nepal’s economy continues to develop.</p></div>
+<div class="stat"><div class="num" data-count="1447">0</div><b data-ne="प्रति व्यक्ति आय">GDP Per Capita</b><p data-ne="प्रति व्यक्ति आर्थिक उत्पादन।">Economic output per person.</p></div>
+<div class="stat"><div class="num" data-count="4">0</div><b data-ne="वृद्धि">Growth</b><p data-ne="आर्थिक वृद्धि विकासका लागि महत्वपूर्ण छ।">Growth is important for development.</p></div>
+<div class="stat"><div class="num" data-count="26">0</div><b data-ne="विप्रेषण">Remittances</b><p data-ne="वैदेशिक रोजगारीले धेरै परिवारलाई सहयोग गर्छ।">Foreign employment supports many families.</p></div>
+</div><div class="media-card"><img src="${img.tea}" alt="Ilam tea garden Nepal"><div><h3 data-ne="कृषि र स्थानीय काम">Agriculture and Local Work</h3><p data-ne="कृषि, ग्रामीण श्रम, चिया बगान, पर्यटन र सेवा क्षेत्रले नेपालको अर्थतन्त्रमा ठूलो भूमिका खेल्छन्।">Agriculture, rural work, tea gardens, tourism, and services play a large role in Nepal’s economy.</p></div></div></section>`;
+
+document.querySelector("#culture").style.setProperty("--bg",`url('${img.kumari}')`);
+document.querySelector("#culture").innerHTML=header("Religion & Cultures","Nepal’s culture is shaped by Hindu, Buddhist, Kirat, Islamic, Christian, indigenous, regional, and local traditions.","धर्म र संस्कृतिहरू",img.kumari,"Faith, Festivals & Identity","आस्था, चाडपर्व र पहिचान")+`
+<section><div class="stats">
+<div class="stat"><div class="num" data-count="81" data-suffix="%">0</div><b data-ne="हिन्दू">Hindu</b><p data-ne="२०२१ जनगणनाअनुसार बहुसंख्यक धर्म।">Majority religion according to the 2021 census.</p></div>
+<div class="stat"><div class="num" data-count="8" data-suffix="%">0</div><b data-ne="बौद्ध">Buddhist</b><p data-ne="नेपालको इतिहास र संस्कृतिसँग गहिरो सम्बन्ध।">Deeply connected with Nepal’s history and culture.</p></div>
+<div class="stat"><div class="num" data-count="5" data-suffix="%">0</div><b data-ne="मुस्लिम">Muslim</b><p data-ne="नेपालको विविध धार्मिक समुदायमध्ये एक।">One of Nepal’s diverse religious communities.</p></div>
+<div class="stat"><div class="num" data-count="3" data-suffix="%">0</div><b data-ne="किरात">Kirat</b><p data-ne="पूर्वी नेपालका आदिवासी परम्परासँग सम्बन्धित।">Linked with indigenous traditions, especially in eastern Nepal.</p></div>
+</div><div class="media-card"><img src="${img.kumari}" alt="Kumari Ghar Kathmandu"><div><h3 data-ne="जीवित देवी कुमारी">Living Goddess Kumari</h3><p data-ne="कुमारी नेपालको अद्वितीय जीवित परम्परा हो। काठमाडौंमा नेवार बौद्ध शाक्य समुदायकी बालिकालाई देवी तलेजुको जीवित रूप मानेर सम्मान गरिन्छ।">The Kumari is one of Nepal’s most remarkable living traditions. In Kathmandu, a young girl from the Newar Buddhist Shakya community is revered as the living embodiment of goddess Taleju.</p></div></div>
+<div class="media-card reverse"><div><h3 data-ne="चाडपर्वहरू">Festivals</h3><p data-ne="दशैं, तिहार, बुद्ध जयन्ती, छठ, होली, तीज, इन्द्र जात्रा, ल्होसार, माघे संक्रान्ति, ईद र क्रिसमस नेपालका प्रमुख चाडपर्व हुन्।">Dashain, Tihar, Buddha Jayanti, Chhath, Holi, Teej, Indra Jatra, Losar, Maghe Sankranti, Eid, and Christmas are major festivals in Nepal.</p></div><img src="${img.lumbini}" alt="Maya Devi Temple Lumbini"></div>
+<div class="culture-strip"><div>Living Goddess Kumari</div><div>Dashain</div><div>Tihar</div><div>Buddha Jayanti</div><div>Chhath</div><div>Indra Jatra</div><div>Losar</div><div>Teej</div><div>Holi</div><div>Maghe Sankranti</div></div></section>`;
+
+document.querySelector("#heroes").style.setProperty("--bg",`url('${img.flag}')`);
+document.querySelector("#heroes").innerHTML=header("Martyrs & Great Heroes of Nepal","A respectful section honoring figures remembered for sacrifice, courage, unification, reform, exploration, and national pride.","नेपालका सहिद र महान् वीरहरू",img.flag,"Legacy & Courage","विरासत र साहस")+`
+<section><div class="section-head"><h2 data-ne="स्मरण र सम्मान">Remembrance and Respect</h2><p class="lead" data-ne="नेपालको इतिहासमा देश, स्वतन्त्रता, सामाजिक न्याय, राष्ट्रिय एकता र गौरवका लागि योगदान गर्ने धेरै महान् व्यक्तित्वहरू छन्।">Nepal’s history remembers many people who contributed to the nation, freedom, social justice, unity, courage, and national pride.</p></div><div class="grid">
+${[
+["Shukraraj Shastri","शुक्रराज शास्त्री","Martyr","सहिद","Remembered among Nepal’s four great martyrs for courage and sacrifice against autocratic rule.","निरंकुश शासनविरुद्ध साहस र बलिदानका लागि नेपालका चार महान् सहिदमध्ये स्मरण गरिन्छ।"],
+["Dharma Bhakta Mathema","धर्मभक्त माथेमा","Martyr","सहिद","A major democratic martyr remembered for resistance, discipline, and sacrifice.","प्रतिरोध, अनुशासन र बलिदानका लागि स्मरण गरिने प्रमुख लोकतान्त्रिक सहिद।"],
+["Dashrath Chand","दशरथ चन्द","Martyr","सहिद","Honored as one of Nepal’s great martyrs of the democratic movement.","लोकतान्त्रिक आन्दोलनका महान् सहिदमध्ये एकका रूपमा सम्मानित।"],
+["Gangalal Shrestha","गंगालाल श्रेष्ठ","Martyr","सहिद","A young martyr remembered for bravery, conviction, and love for freedom.","साहस, अडान र स्वतन्त्रताप्रतिको प्रेमका लागि स्मरण गरिने युवा सहिद।"],
+["Lakhan Thapa Magar","लखन थापा मगर","First Martyr","प्रथम सहिद","Widely honored as Nepal’s first martyr for opposing oppressive rule.","दमनकारी शासनविरुद्ध उभिएका नेपालका प्रथम सहिदका रूपमा सम्मानित।"],
+["Prithvi Narayan Shah","पृथ्वीनारायण शाह","Unifier","एकीकरणकर्ता","Remembered for the political unification of Nepal and shaping the modern Nepali state.","नेपाल एकीकरण र आधुनिक नेपाली राज्य निर्माणका लागि स्मरण गरिन्छ।"],
+["Amar Singh Thapa","अमर सिंह थापा","National Hero","राष्ट्रिय वीर","Known for military leadership, discipline, and defense of Nepal’s sovereignty.","सैन्य नेतृत्व, अनुशासन र नेपालको सार्वभौमिकताको रक्षाका लागि प्रसिद्ध।"],
+["Balbhadra Kunwar","बलभद्र कुँवर","National Hero","राष्ट्रिय वीर","Remembered for courage at Nalapani and heroic resistance during the Anglo-Nepal War.","नालापानीको साहस र अंग्रेज-नेपाल युद्धको वीर प्रतिरोधका लागि स्मरणीय।"],
+["Bhakti Thapa","भक्ति थापा","National Hero","राष्ट्रिय वीर","Remembered for bravery, loyalty, and sacrifice in Nepal’s military history.","नेपालको सैन्य इतिहासमा साहस, निष्ठा र बलिदानका लागि स्मरण गरिन्छ।"],
+["Pasang Lhamu Sherpa","पासाङ ल्हामु शेर्पा","Mountaineering Hero","पर्वतारोहण वीर","The first Nepali woman to summit Mount Everest, a symbol of courage and determination.","सगरमाथा आरोहण गर्ने पहिलो नेपाली महिला, साहस र दृढताको प्रतीक।"]
+].map(h=>`<article class="hero-card"><img src="${img.flag}" alt="Flag of Nepal"><div><span class="tag" data-ne="${h[3]}">${h[2]}</span><h3 data-ne="${h[1]}">${h[0]}</h3><p data-ne="${h[5]}">${h[4]}</p></div></article>`).join("")}
+</div></section>`;
+
+document.querySelector("#updates").style.setProperty("--bg",`url('${img.kathmandu}')`);
+document.querySelector("#updates").innerHTML=header("Latest Updates in Nepal","Important recent events in Nepal across governance, economy, human rights, diplomacy, and sports. Updated for May 2, 2026.","नेपालका पछिल्ला महत्वपूर्ण अपडेटहरू",img.kathmandu,"As of May 2, 2026","२०८३ वैशाख १९ सम्म")+`
+<section>
+<div class="section-head">
+  <h2 data-ne="मुख्य समसामयिक घटनाहरू">Important Recent Events</h2>
+  <p class="lead" data-ne="यो खण्ड राजनीति मात्र होइन; अर्थतन्त्र, मानवअधिकार, कूटनीति, खेलकुद र राष्ट्रिय प्राथमिकतासँग जोडिएका पछिल्ला महत्वपूर्ण घटनाहरूको सार हो।">This section is not only about politics; it summarizes major recent events connected with governance, economy, human rights, diplomacy, sports, and national priorities.</p>
+</div>
+<div class="stats">
+  <div class="stat"><div class="num" data-count="2026">0</div><b data-ne="मार्च चुनाव">March Election</b><p data-ne="२०२६ मार्चमा भएको चुनावपछि नयाँ राजनीतिक चरण सुरु भयो।">The March 2026 election opened a new political phase.</p></div>
+  <div class="stat"><div class="num" data-count="2" data-suffix=".3%">0</div><b data-ne="विकास दर अनुमान">Growth Forecast</b><p data-ne="विश्व बैंकले आर्थिक वृद्धि FY26 मा २.३ प्रतिशतमा सुस्त हुनसक्ने बताएको छ।">World Bank projected FY26 growth slowing to 2.3%.</p></div>
+  <div class="stat"><div class="num" data-count="25">0</div><b data-ne="क्रिकेट सिरिज">Cricket Series</b><p data-ne="२५ अप्रिलदेखि ५ मे २०२६ सम्म नेपालमा ODI त्रिदेशीय सिरिज।">ODI tri-series in Nepal runs April 25-May 5, 2026.</p></div>
+  <div class="stat"><div class="num" data-count="30">0</div><b data-ne="मानवअधिकार पत्र">Rights Appeal</b><p data-ne="३० अप्रिल २०२६ मा अधिकार संस्थाहरूले सुधार सिफारिस गरे।">Rights groups issued reform recommendations on April 30, 2026.</p></div>
+</div>
+
+<div class="media-card">
+  <img src="${img.kathmandu}" alt="Kathmandu Nepal">
+  <div>
+    <h3 data-ne="नयाँ संसद र शासन">New Parliament and Governance</h3>
+    <p data-ne="२ अप्रिल २०२६ मा नयाँ निर्वाचित सांसदहरूको पहिलो संसद सत्र बसेको रिपोर्ट आयो। जनअपेक्षा भ्रष्टाचार नियन्त्रण, पारदर्शी शासन, रोजगारी र सार्वजनिक सेवाको सुधारतर्फ केन्द्रित छ।">Nepal’s first post-election parliament session was reported on April 2, 2026. Public expectations center on anti-corruption action, transparent governance, jobs, and better public services.</p>
+  </div>
+</div>
+
+<div class="media-card reverse">
+  <div>
+    <h3 data-ne="अर्थतन्त्र सुस्त हुने चेतावनी">Economic Slowdown Warning</h3>
+    <p data-ne="८ अप्रिल २०२६ मा विश्व बैंकले Middle East conflict र २०२५ को आन्तरिक अवरोधका असरका कारण FY26 मा नेपालको वृद्धि २.३ प्रतिशतमा झर्नसक्ने जनाएको छ। पर्यटन, ढुवानी खर्च, आपूर्ति शृंखला र विप्रेषण जोखिममा छन्।">On April 8, 2026, the World Bank said Nepal’s FY26 growth may slow to 2.3%, affected by the Middle East conflict and lingering domestic disruptions from 2025. Tourism, transport costs, supply chains, and remittances remain key risks.</p>
+  </div>
+  <img src="${img.tea}" alt="Ilam tea garden Nepal economy">
+</div>
+
+<div class="media-card">
+  <img src="${img.flag}" alt="Flag of Nepal">
+  <div>
+    <h3 data-ne="मानवअधिकार र सुधारको माग">Human Rights and Reform Demands</h3>
+    <p data-ne="३० अप्रिल २०२६ मा Human Rights Watch, Amnesty International र International Commission of Jurists ले नयाँ सरकारलाई मानवअधिकार, संक्रमणकालीन न्याय, आवास अधिकार, महिला, दलित, अल्पसंख्यक, प्रवासी श्रमिक र अभिव्यक्ति स्वतन्त्रतामा सुधार गर्न आग्रह गरे।">On April 30, 2026, Human Rights Watch, Amnesty International, and the International Commission of Jurists urged the new government to act on human rights, transitional justice, housing rights, women’s rights, Dalit and minority rights, migrant workers, and freedom of expression.</p>
+  </div>
+</div>
+
+<div class="media-card reverse">
+  <div>
+    <h3 data-ne="कूटनीतिक गतिविधि">Diplomatic Activity</h3>
+    <p data-ne="अप्रिल २०२६ मा अमेरिकी Assistant Secretary Samir Paul Kapur नेपाल आएर राजनीतिक भेटघाट गरे। नयाँ सरकार बनेपछि काठमाडौंमा उच्चस्तरीय कूटनीतिक गतिविधि बढेको संकेत देखियो।">In April 2026, US Assistant Secretary Samir Paul Kapur visited Nepal and held political meetings, signaling increased diplomatic engagement after the new government formed.</p>
+  </div>
+  <img src="${img.patan}" alt="Kathmandu public square">
+</div>
+
+<div class="media-card">
+  <img src="${img.pokhara}" alt="Nepal cricket and national updates visual">
+  <div>
+    <h3 data-ne="खेलकुद अपडेट">Sports Update</h3>
+    <p data-ne="२५ अप्रिलदेखि ५ मे २०२६ सम्म नेपाल, ओमान र यूएईबीच Cricket World Cup League 2 अन्तर्गत ODI त्रिदेशीय सिरिज नेपालमा भइरहेको छ, खेलहरू कीर्तिपुरस्थित TU International Cricket Ground मा छन्।">From April 25 to May 5, 2026, Nepal is hosting an ODI tri-nation series with Oman and the UAE under Cricket World Cup League 2, with matches at TU International Cricket Ground in Kirtipur.</p>
+  </div>
+</div>
+
+<div class="heritage-list">
+  <div class="heritage-item"><b data-ne="शासन">Governance</b><span data-ne="नयाँ सरकारबाट पारदर्शिता, रोजगारी र भ्रष्टाचार नियन्त्रणको अपेक्षा उच्च छ।">High expectations for transparency, jobs, and anti-corruption action.</span></div>
+  <div class="heritage-item"><b data-ne="अर्थतन्त्र">Economy</b><span data-ne="वृद्धि सुस्त हुने अनुमानले निजी क्षेत्र, पर्यटन र लगानी सुधारलाई महत्वपूर्ण बनाएको छ।">Slower growth makes private sector, tourism, and investment reforms important.</span></div>
+  <div class="heritage-item"><b data-ne="मानवअधिकार">Human Rights</b><span data-ne="अधिकार संस्थाहरूले जवाफदेहिता र कानुनी शासनमा जोड दिएका छन्।">Rights groups are pressing for accountability and rule of law.</span></div>
+  <div class="heritage-item"><b data-ne="खेलकुद">Sports</b><span data-ne="नेपालमा भइरहेको ODI सिरिजले क्रिकेट समर्थकहरूको ध्यान तानेको छ।">The ODI series in Nepal has drawn attention from cricket fans.</span></div>
+</div>
+</section>`;
+
+const pages=document.querySelectorAll(".page");
+const navLinks=document.querySelectorAll("[data-page]");
+const progress=document.getElementById("progress");
+const music=document.getElementById("bgMusic");
+const musicBtn=document.getElementById("musicBtn");
+const translateBtn=document.getElementById("translateBtn");
+const counted=new WeakSet();
+let nepali=false;
+
+function fallbackSvg(t){return"data:image/svg+xml;charset=UTF-8,"+encodeURIComponent(`<svg xmlns="http://www.w3.org/2000/svg" width="900" height="650"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#0f766e"/><stop offset=".55" stop-color="#b91c1c"/><stop offset="1" stop-color="#f6c453"/></linearGradient></defs><rect width="900" height="650" fill="url(#g)"/><path d="M0 420 L170 210 L285 335 L420 150 L570 360 L700 220 L900 430 V650 H0Z" fill="#fffaf0" opacity=".92"/><text x="50%" y="86%" text-anchor="middle" font-family="Arial" font-size="40" font-weight="900" fill="#fffaf0">${t}</text></svg>`)}
+
+function showPage(id){
+  const selected=document.getElementById(id)?id:"home";
+  pages.forEach(page=>page.classList.toggle("active",page.id===selected));
+  document.querySelectorAll(".links a").forEach(a=>a.classList.toggle("active",a.dataset.page===selected));
+  window.scrollTo({top:0,behavior:"smooth"});
+  setTimeout(observeVisibleNumbers,250);
+}
+function route(){showPage(location.hash.replace("#","")||"home")}
+navLinks.forEach(link=>link.addEventListener("click",e=>{const id=link.dataset.page;if(id){e.preventDefault();history.pushState(null,"","#"+id);showPage(id)}}));
+window.addEventListener("popstate",route);
+
+window.addEventListener("scroll",()=>{const h=document.documentElement.scrollHeight-innerHeight;progress.style.width=h>0?(scrollY/h)*100+"%":"0%"});
+
+function setupReveal(){
+  const revealItems=document.querySelectorAll(".card,.media-card,.step,.hero-card");
+  const revealObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)entry.target.classList.add("show")})},{threshold:.18});
+  revealItems.forEach(item=>revealObserver.observe(item));
+}
+function setupImages(){document.querySelectorAll("img").forEach(imgEl=>{imgEl.addEventListener("error",()=>imgEl.src=fallbackSvg(imgEl.alt||"Nepal"))})}
+function animateNumber(num){
+  if(counted.has(num))return;
+  counted.add(num);
+  const target=Number(num.dataset.count);
+  let current=0;
+  const inc=Math.max(1,Math.ceil(target/86));
+  const timer=setInterval(()=>{current+=inc;if(current>=target){current=target;clearInterval(timer)}num.textContent=current.toLocaleString()+(num.dataset.suffix||"")},18);
+}
+function setupNumbers(){
+  const nums=document.querySelectorAll(".num");
+  const numberObserver=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting)animateNumber(entry.target)})},{threshold:.4});
+  nums.forEach(num=>numberObserver.observe(num));
+}
+function observeVisibleNumbers(){document.querySelectorAll(".num").forEach(num=>{const r=num.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)animateNumber(num)})}
+
+document.querySelectorAll("[data-ne]").forEach(el=>el.dataset.en=el.textContent.trim());
+translateBtn.addEventListener("click",()=>{
+  nepali=!nepali;
+  document.documentElement.lang=nepali?"ne":"en";
+  document.querySelectorAll("[data-ne]").forEach(el=>el.textContent=nepali?el.dataset.ne:el.dataset.en);
+  translateBtn.textContent=nepali?"English":"नेपाली";
+});
+
+async function tryAutoplayMusic(){try{music.volume=.32;await music.play();musicBtn.textContent="Pause Resham Firiri"}catch(e){musicBtn.textContent="Play Resham Firiri"}}
+musicBtn.addEventListener("click",async()=>{try{if(music.paused){music.volume=.32;await music.play();musicBtn.textContent="Pause Resham Firiri"}else{music.pause();musicBtn.textContent="Play Resham Firiri"}}catch(e){alert("Place resham-firiri.mp3 in the same folder as this HTML file.")}});
+
+document.addEventListener("mousemove",e=>{const hero=document.querySelector(".page.active .hero-content");if(hero)hero.style.transform=`translate(${(e.clientX/innerWidth-.5)*12}px,${(e.clientY/innerHeight-.5)*12}px)`});
+
+window.addEventListener("load",()=>{setupImages();setupReveal();setupNumbers();route();tryAutoplayMusic();observeVisibleNumbers()});
+</script>
+</body>
+</html>
+
